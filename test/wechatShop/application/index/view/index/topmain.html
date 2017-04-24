@@ -1,0 +1,62 @@
+<!-- 轮播图 -->
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		  <!-- Indicators -->
+		  <ol class="carousel-indicators">
+		  {for start="1" end="$count+1"}
+		    {if condition="$i == 1"}
+		    	<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+		    	{else /} 
+		    	<li data-target="#carousel-example-generic" data-slide-to={$i-1}></li>
+		    {/if}
+		   {/for}
+		  </ol>
+
+
+
+		  <!-- Wrapper for slides -->
+		  <div class="carousel-inner" role="listbox">
+		  {volist name="carousel" id="pic" }
+		  {if condition="$flag-- == 1"}
+		    <div class="item active">
+		    {else /} 
+		    <div class="item">
+		    {/if}
+		      <img src="{$path}img/{$pic.gimg_url}" alt="">
+		    </div>
+		    {/volist}
+		  </div>
+
+
+		  <!-- Controls -->
+		  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		    <span class="sr-only">Previews</span>
+		  </a>
+		  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		    <span class="sr-only">Next</span>
+		  </a>
+		</div>
+
+		<!-- 一级页面-滚动-商品 -->
+		<section class="product box cms-module-fillprice price-loaded">
+			<ul>
+			{volist name="recommend" id="pic" }
+				<li class="cms-src-item">
+					<a href="#" style="text-decoration: none;">
+						<div class="product-pic" style="position:relative;">
+							<img src="{$path}img/{$pic.gimg_url}" alt="">
+						</div>					
+						<h2 class="ellipsis2">{$pic.gname}</h2>
+						<div class="product-price">
+							<div class="product-pricer1">
+								<em class="yen">¥</em>
+								<span class="price cms-fill-price">{$pic.gpri}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+			{/volist}
+			</ul>
+			<div class="bannerProduct"></div>
+		</section>

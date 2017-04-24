@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>
+      Admin |
+    </title>
+    <!--<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css" />-->
+    <link href="__PUBLIC__/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/font-awesome.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/se7en-font.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/isotope.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/jquery.fancybox.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/fullcalendar.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/wizard.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/select2.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/morris.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/datatables.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/datepicker.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/timepicker.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/colorpicker.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/bootstrap-switch.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/daterange-picker.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/typeahead.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/summernote.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/pygments.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/style.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/css/color/green.css" media="all" rel="alternate stylesheet" title="green-theme" type="text/css"/>
+    <link href="__PUBLIC__/css/color/orange.css" media="all" rel="alternate stylesheet" title="orange-theme" type="text/css" />
+    <link href="__PUBLIC__/css/color/magenta.css" media="all" rel="alternate stylesheet" title="magenta-theme" type="text/ css" />
+    <link href="__PUBLIC__/css/color/gray.css" media="all" rel="alternate stylesheet" title="gray-theme" type="text/css" />
+    <link href="__PUBLIC__/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+    <script src="__PUBLIC__/js/jquery.min.js" type="text/javascript"></script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  </head>
+  <body>
+    <div class="modal-shiftfix">
+      <!-- Navigation -->
+      <div class="navbar navbar-fixed-top scroll-hide">
+        <div class="container-fluid top-bar">
+          <div class="pull-right">
+            <ul class="nav navbar-nav pull-right">
+              <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <img width="34" height="34" src="__PUBLIC__/images/avatar-male.jpg" />超级管理员<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{:url('home/profile')}">
+                    <i class="icon-user"></i>个人信息</a>
+                  </li>
+                  <li><a href="{:url('/user/logout')}">
+                    <i class="icon-gear"></i>退出登录</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container-fluid main-nav clearfix">
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li>
+                <a {in name='_controller' value='index'} class="current" {/in} href="{:url('home/index')}"><span aria-hidden="true" class="se7en-home"></span>管理面板</a>
+              </li>
+              <li  class="dropdown"><a {in name='_controller' value='userList,adminList'} class="current" {/in} data-toggle="dropdown" href="#">
+                <span aria-hidden="true" class="se7en-forms"></span>用户管理<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{:url('home/userList')}" >
+                    <!-- <span class="notifications label label-warning">5 New</span> -->
+                    <p>
+                      用户列表
+                    </p></a>
+                  </li>
+                  <!-- <li>
+                    <a href="components.html">管理员列表</a>
+                  </li> -->
+                </ul>
+              </li>
+              <li class="dropdown"><a {in name='_controller' value='orderList'} class="current" {/in} data-toggle="dropdown" href="#">
+                <span aria-hidden="true" class="se7en-tables"></span>订单管理<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="{:url('home/orderList')}">订单列表</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown"><a {in name='_controller' value='goodsList,goodsNew,goodsCategory'} class="current" {/in} data-toggle="dropdown" href="#">
+                <span aria-hidden="true" class="se7en-star"></span>商品管理<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="{:url('home/goodsList')}">商品列表</a>
+                  </li>
+                  <li>
+                    <a href="{:url('home/goodsNew')}">发布新商品</a>
+                  </li>
+                  <li>
+                    <a href="{:url('home/goodsCategory')}">商品分类管理</a>                    
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown"><a data-toggle="dropdown" href="#">
+                <span aria-hidden="true" class="se7en-charts"></span>大师作品<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="calendar.html">大师信息表</a>
+                  </li>
+                  <li>
+                    <a href="calendar.html">大师作品表</a>
+                  </li>
+                  
+
+                </ul>
+              </li>
+              <li><a href="gallery.html">
+                <span aria-hidden="true" class="se7en-gear"></span>系统设置</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- End Navigation -->

@@ -1,0 +1,8 @@
+数据库：http://iweibin.com/pma/phpmyadmin
+账号： wxshop
+密码：wxshop
+
+
+FTP: 121.42.57.24 端口号：21
+用户名：wxshop
+密码： wxshop

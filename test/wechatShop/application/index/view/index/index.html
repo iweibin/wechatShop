@@ -1,0 +1,10 @@
+{include file="header" /}
+	
+	{include file="index/topmain" /}
+	{if condition='$page == "index"'}
+		{include file="index/indexpage" /}
+	{else /}
+		{include file="index/otherpage" /}
+	{/if}
+
+{include file="footer" /}

@@ -1,0 +1,77 @@
+		<section class="product box cms-module-fillprice price-loaded">
+			<div class="title title01">{$name}</div>
+				<a href="{:url('index/topage', 'page=product')}">
+				<img class="lazyload lazyloaded" width="750" src="{$path}img/test4.jpg" alt="">
+			</a>
+			<ul>
+				{volist name="$$page" id="pic" }
+				<li class="cms-src-item">
+					<a href="#" style="text-decoration: none;">
+						<div class="product-pic" style="position:relative;">
+							<img src="{$path}img/{$pic.gimg_url}" alt="">
+						</div>					
+						<h2 class="ellipsis2">{$pic.gname}</h2>
+						<div class="product-price">
+							<div class="product-pricer1">
+								<em class="yen">¥</em>
+								<span class="price cms-fill-price">{$pic.gpri}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				{/volist}										
+			</ul>
+		</section>
+
+	<!-- 限时特惠 -->
+		<section class="product box cms-module-fillprice price-loaded">
+			<div class="title title01">限时特惠</div>
+				<a href="{:url('index/topage', 'page=product')}">
+				<img class="lazyload lazyloaded" width="750" src="{$path}img/test3.jpg" alt="">
+			</a>
+			<ul>
+				{volist name="tehui" id="pic" }
+				<li class="cms-src-item">
+					<a href="#" style="text-decoration: none;">
+						<div class="product-pic" style="position:relative;">
+							<img src="{$path}img/{$pic.gimg_url}" alt="">
+						</div>					
+						<h2 class="ellipsis2">{$pic.gname}</h2>
+						<div class="product-price">
+							<div class="product-pricer1">
+								<em class="yen">¥</em>
+								<span class="price cms-fill-price">{$pic.gpri}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				{/volist}										
+			</ul>
+		</section>
+
+		<!-- 榜单热销 -->
+		<section class="product box cms-module-fillprice price-loaded">
+			<div class="title title01">榜单热销</div>
+				<a href="{:url('index/topage', 'page=product')}">
+				<img class="lazyload lazyloaded" width="750" src="{$path}img/test2.jpg" alt="">
+			</a>
+			<ul>
+				{volist name="rexiao" id="pic" }
+				<li class="cms-src-item">
+					<a href="#" style="text-decoration: none;">
+						<div class="product-pic" style="position:relative;">
+							<img src="{$path}img/{$pic.gimg_url}" alt="">
+						</div>					
+						<h2 class="ellipsis2">{$pic.gname}</h2>
+						<div class="product-price">
+							<div class="product-pricer1">
+								<em class="yen">¥</em>
+								<span class="price cms-fill-price">{$pic.gpri}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				{/volist}										
+			</ul>
+		</section>
+		</div>

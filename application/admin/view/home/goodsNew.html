@@ -1,0 +1,138 @@
+{include file="header"}
+
+      <div class="container-fluid main-content">
+        <div class="page-title">
+          <h1>
+            发布新商品
+          </h1>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+              <div class="widget-container fluid-height clearfix">
+                <div class="heading">
+                  <i class="icon-reorder"></i>商品信息
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-9">
+                  <div class="widget-content padded">
+                    <form action="{:url('home/goodsNewDo')}" class="form-horizontal" method="post" enctype="multipart/form-data">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2">商品名称<em style="color: red;">*</em></label>
+                        <div class="col-md-5">
+                          <input class="form-control" placeholder="请输入商品名称" name="gname" type="text">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">商品优惠信息<em style="color: red;">*</em></label>
+                        <div class="col-md-5">
+                          <textarea name="gdec_s" class="form-control" rows="3"></textarea>
+                        </div>
+
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">商品分类</label>
+                        <div class="col-md-2">
+                          <select name="gtype_id" class="form-control">
+                            <option value="1" selected="selected">文具</option>
+                            <option value="2">日用品</option>
+                            <option value="3">文创商品</option>
+                            <option value="4">大师作品</option>
+                            <option value="5">台湾作品</option>
+                            <option value="6">大陆作品</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">商品规格及价格<em style="color: red;">*</em></label>
+                        <div class="col-md-3">
+                          <textarea name="gpri" class="form-control" rows="4">1只装 50.5 2只装 100.0</textarea>
+                        </div>
+                        <em style="color: #afafaf;">(即是否显示在轮播图商品中)</em>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2">销售方式<em style="color: red;">*</em></label>
+                        <div class="col-md-7">
+                          <label class="radio" for="option1">
+                            <input checked id="option1" name="sale_mode" type="radio" value="现货/3个工作日内发货">
+                            <span>现货/3个工作日内发货</span>
+                          </label>
+                          <label class="radio" for="option2">
+                            <input id="option2" name="sale_mode" type="radio" value="预定/">
+                            <span>预定/ <input name="mode2" placeholder="例.2017年05月06日发货" type="text"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">商品主图<em style="color: red;">*</em></label>
+                        <div class="col-md-9">
+                            <link href="__PUBLIC__/imgUp/css/common.css" type="text/css" rel="stylesheet"/>
+                            <link href="__PUBLIC__/imgUp/css/index.css" type="text/css" rel="stylesheet"/>
+                            <div class="img-box">
+                              <section class="img-section">
+                                  <p class="up-p"><span class="up-span"><em>最多可以上传5张图片，马上上传</em></span></p>
+                                <div class="z_photo upimg-div clear" >
+                                  <section class="z_file fl">
+                                    <img src="__PUBLIC__/imgUp/img/a11.png" class="add-img">
+                                    <input type="file" name="gimg" id="fileUpload" class="file" value="" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+                                  </section>
+                                </div>
+                               </section>
+                            </div>
+                                <aside class="mask works-mask">
+                              <div class="mask-content">
+                                <p class="del-p">您确定要删除作品图片吗？</p>
+                                <p class="check-p"><span class="del-com wsdel-ok">确定</span><span class="wsdel-no">取消</span></p>
+                              </div>
+                            </aside>
+                            <!-- <script src="__PUBLIC__/imgUp/js/imgPlugin.js"></script> -->
+                            <script src="__PUBLIC__/imgUp/js/imgUp.js"></script>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">商品描述<em style="color: red;">*</em></label>
+                        <div class="col-md-9">
+                          <!--style给定宽度可以影响编辑器的最终宽度-->
+                          <script type="text/plain" id="myEditor" name="gdec_l" style="width: 100%; height: 300px;">填写商品描述</script>
+                        </div>
+                          <!-- 配置文件 -->
+                          <script type="text/javascript" src="__PUBLIC__/umeditor/third-party/template.min.js"></script>
+                          <script type="text/javascript" src="__PUBLIC__/umeditor/umeditor.config.js"></script>
+                          <!-- 编辑器源码文件 -->
+                          <script type="text/javascript" src="__PUBLIC__/umeditor/umeditor.min.js"></script>
+                          <script type="text/javascript" src="__PUBLIC__/umeditor/lang/zh-cn/zh-cn.js"></script>
+                          <!-- 实例化编辑器 -->
+                          <script type="text/javascript">
+                              var um = UM.getEditor('myEditor');
+                          </script>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">是否精选</label>
+                        <div class="col-md-7 clearfix">
+                          <div class="holder">
+                            <input class="check-ios" id="check" name="gchoice" type="checkbox" value="1">
+                            <label for="check"></label>
+                            <span></span>
+                          </div>
+                          <em style="color: #afafaf;">(即是否显示在轮播图商品中)</em>
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2"></label>
+                        <div class="col-md-7">
+                          <button class="btn btn-primary" type="submit">提交</button><button class="btn btn-default-outline">取消</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{include file="footer"}
