@@ -8,10 +8,10 @@ class User extends \think\Model {
 
 	protected $M;
 
-    public function __construct() {
+    public function __construct($table = '') {
     	parent::__construct();
     	
-    	$this->M = Db::name($this->table); 
+    	$this->M = Db::name($table ? $table : $this->table); 
     }
 
 
