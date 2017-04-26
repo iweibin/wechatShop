@@ -1,0 +1,263 @@
+.pop_notice {
+	padding-top: 15px;
+	color: #aa0e11;
+	line-height: 1.4
+}
+.wraper {
+	position: relative;
+	padding-top: 89px;
+	padding-bottom: 97px
+}
+
+.wraper,.wraper * {
+	box-sizing: border-box
+}
+
+.fixed-hd {
+	margin: 10px auto 0px auto;
+	line-height: 38px;
+	background: #fff;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+	font-weight: bold;
+	color: #ad0e11;
+}
+
+.pro-info {
+	padding: 20px 10px;
+	border-top: 1px solid #ddd
+}
+
+.pro-show .name {
+	font-size: 16px
+}
+
+.pro-show .price {
+	margin-top: 10px;
+	font-size: 18px
+}
+
+.pro-detail{
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+}
+.pro-detail-title {
+	background: #fff;
+	margin-top: 10px;
+	padding: 10px 10px 0
+}
+
+.tab-item .pro-detail {
+	border-bottom: 1px solid #ddd;
+	background: #fff;
+	padding: 10px;
+}
+
+.pro-detail p:after {
+	content: "";
+	display: table;
+	height: 0;
+	clear: both
+}
+
+.pro-detail img {
+	max-width: 100%
+}
+
+.list-type {
+	margin-bottom: 0
+}
+
+.fixed-ft {
+	position: fixed;
+	z-index: 9;
+	width: 100%;
+	max-width: 640px;
+	min-width: 320px;
+	left: 0;
+	right: 0;
+	bottom: 46px;
+	margin: 0 auto;
+	text-align: right;
+	background: #fff;
+	color: #000;
+	border-top: 1px solid #ddd
+}
+
+.fixed-ft,.fixed-ft .btn {
+	height: 50px;
+	line-height: 50px
+}
+
+.fixed-ft .btn {
+	border-radius: 0px;
+	display: block;
+	width: 30%;
+	text-align: center;
+	color: #fff;
+	background: #ad0e11;
+	line-height: 40px;
+}
+
+.fixed-ft .btn.disable {
+	background: #ebebeb;
+	color: #8f8f8f
+}
+
+.fixed-ft .add-car ,.fixed-ft .addToCar {
+	background: #333
+}
+
+.fixed-ft .operation {
+	line-height: 18px;
+	color: #666;
+	background: #fff
+}
+
+.fixed-ft .operation .icon-car {
+	display: block;
+	margin: 5px auto 0;
+	width: 23px;
+	height: 23px;
+	background-size: 100% auto;
+	background-repeat: no-repeat
+}
+
+.fixed-ft .operation .icon-car {
+	background: url(../img/bottom2.png)no-repeat -70px -5px;
+	background-size: 160px auto;
+}
+
+.fixed-ft .shopping-bag {
+	display: block;
+	position: relative;
+	text-align: center;
+	max-width: 50px;
+	height: 50px;
+	font-size: 12px
+}
+
+.fixed-ft .shopping-bag:after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -17px;
+	height: 34px;
+	width: 1px;
+	background: #999
+}
+
+.fixed-ft .shopping-bag .num {
+	position: absolute;
+	right: 11px;
+	top: 3px;
+	height: 14px;
+	padding: 0 4px;
+	background: #ad0e11;
+	border-radius: 7px;
+	text-align: center;
+	color: #fff;
+	font-size: 12px;
+	line-height: 14px;
+	display: none
+}
+
+.fixed-ft .shopping-bag .num.show {
+	display: block
+}
+
+.fixed-ft .service {
+	display: block;
+	text-align: center;
+	max-width: 50px;
+	height: 50px;
+	font-size: 12px
+}
+.pop-footer .pop-ft {
+	height: 50px
+}
+
+.pop-choose .pop-ft a {
+	height: 50px;
+	line-height: 50px
+}
+
+.pop-parameter .pop-ft {
+	height: 40px
+}
+.wraper {
+	padding-top: 0!important;
+	padding-bottom: 50px!important
+}
+
+.wraper .page-title {
+	display: none!important
+}
+
+.wraper .fixed-hd {
+	position: static!important
+}
+
+.fixed-bt,.wraper .pro-detail-title {
+	display: none!important
+}
+
+.wraper .fixed-ft {
+	bottom: 0!important
+}
+
+.wraper .fixed-ft .home {
+	display: block!important;
+	position: relative;
+	text-align: center;
+	max-width: 50px;
+	height: 50px;
+	font-size: 12px;
+	color: #666
+}
+
+.wraper .fixed-ft .home .icon-pre {
+	position: relative;
+	display: block;
+	margin: 0 auto -3px;
+	width: 30px;
+	height: 30px;
+	background: url(../img/bottom2.png)no-repeat -90px top;
+	background-size: 150px auto;
+}
+
+.wraper .fixed-ft .home:after {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 50%;
+	margin-top: -17px;
+	height: 34px;
+	width: 1px;
+	background: #999
+}
+
+.wraper .list-type {
+	margin-top: 10px!important;
+	margin-bottom: 10px
+}
+
+.wraper .list-type li {
+	margin-top: -1px!important
+}
+#description p{
+	margin-top: 5px; 
+	margin-bottom: 5px; 
+	line-height: 1.5em;
+}
+
+#description span{
+	font-size: 15px;
+}
+#description img{
+	margin: 5px auto;
+}
+.pre-addcar{
+	position: inherit;
+}

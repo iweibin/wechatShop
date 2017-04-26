@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+.header-static {
+	background-color: #ad0e11;
+}
+
+#page_login {
+	padding-top: 20px;
+	background: #f8f8f8
+}
+
+#page_login a {
+	color: #4285f4
+}
+
+#page_login .input-wrapper {
+	border: 1px solid #d3d3d3 ;
+	padding-left: 18px;
+	margin: 20px 10px;
+	background: #fff
+}
+
+#page_login .input-wrapper li {
+	padding: 5px 30px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #d3d3d3;
+	background: url(../img/icon2.png) no-repeat 0 -99999px / 25px auto;
+	overflow: hidden
+}
+
+#page_login .input-wrapper li:last-child {
+	border-bottom: 0 none
+}
+
+#page_login .input-wrapper li.i-userPhone {
+	background-position: 0 14px
+}
+
+#page_login .input-wrapper li.i-phonemsg {
+	background-position: 0 -24px;
+	position:relative;
+}
+
+#page_login .input-wrapper li input {
+	padding: 0;
+	border: 0 none;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	outline: 0 none
+}
+
+#page_login .btn-login {
+	margin-top: 10px;
+	width: 100%;
+	padding: 0;
+	border: 0 none;
+	color: #fff;
+	height: 45px;
+	border-radius: 6px;
+	background: #ad0e11;
+}
+#page_login .loginClick :active{
+	background: #c5191c;
+}
+
+.form-control {
+	color: #333
+}
+
+body {
+	font-size: 16px;
+	line-height: 1.4;
+	color: #333;
+	background-color: #fff;
+}
+
+.clearfix:before,.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+ul,li,ol {
+	margin: 0;
+	padding: 0;
+	list-style: none outside none;
+}
+
+[class^="icon-"],[class*=" icon-"] {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	vertical-align: middle;
+	background: url(../img/icon.png) no-repeat 0 0;
+	background-size: 100px auto;
+}
+
+.form-control {
+	color: #999;
+	padding: 0 9px;
+}
+
+.form-control {
+	margin-top: 20px;
+}
+
+.form-control input[type=checkbox] {
+	margin: 0 5px;
+}
+
+.icon-chevron-left {
+	width: 45px;
+	height: 45px;
+	background-position: 12px -503px;
+}
+
+header {
+	background: #c5191c;
+	height: 45px;
+}
+
+.header-static {
+	position: relative;
+}
+
+header .center {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 60%;
+	margin: 0 20%;
+	line-height: 45px;
+	text-align: center;
+	font-size: 16px;
+	color: #FFF;
+}
+.sendMsg{
+	background-color: #d6d6d6;
+	position: absolute;
+	display: block;
+	line-height: 48px;
+	width: 100px;
+	top: 0px;
+	right: 0px;
+	border: 0px;
+}
