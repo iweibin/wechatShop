@@ -1,0 +1,122 @@
+{include file="header"}
+
+	<div class="container-fluid main-content">
+	  <div class="page-title">
+      <h1>
+        商品列表
+      </h1>
+	  </div>
+	  <!-- DataTables Example -->
+	  <div class="row">
+      <div class="col-lg-12">
+        <div class="widget-container fluid-height clearfix">
+          <div class="heading">
+            <i class="icon-table"></i>列表详情
+          </div>
+          <div class="widget-content padded clearfix">
+            <table class="table table-bordered table-striped" id="dataTable1">
+              <thead>
+                <th class="check-header hidden-xs">
+                  <label><input id="checkAll" name="checkAll" type="checkbox"><span></span></label>
+                </th>
+                <th style="width: 80px;">
+                  ID
+                </th>
+                <th style="min-width: 110px;">
+                  商品名称
+                </th>
+                <th style="width: 110px;">
+                  商品类型
+                </th>
+                <th style="width: 160px;">
+                  商品规格和价格
+                </th>
+                <th style="width: 90px;">
+                  销量
+                </th>
+                <th style="width: 110px;">
+                  是否精选
+                </th>
+                <th style="width: 110px;">
+                  是否特惠
+                </th>
+                <th class="hidden-xs" style="width: 120px;">
+                  商品状态
+                </th>
+                <th style="width: 120px;">
+                  上架时间
+                </th>
+                <th>
+                  操作
+                </th>
+              </thead>
+              <tbody>
+              {volist name="goodsList" id="vo"}
+                <tr>
+                  <td class="check hidden-xs">
+                    <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                  </td>
+                  <td>
+                    {$vo.gid}
+                  </td>
+                  <td>
+                    {$vo.gname}
+                  </td>
+                  <td class="hidden-xs">
+                    {$typeList[$vo.gtype_id]}
+                  </td>
+                  <td>
+                  {foreach name="$vo.gpri" item="vol" }
+                      {$key}:￥{$vol} 
+                  {/foreach}
+                  </td>
+                  <td>
+                    {$vo.gsales}
+                  </td>
+                  <td class="hidden-xs">
+                    {eq name="$vo.gchoice" value="1" }
+                      <span class="label label-success">精选</span>
+                    {else/}
+                      <span class="label label-warning">否</span>
+                    {/eq}
+                  </td>
+                  <td class="hidden-xs">
+                    {eq name="$vo.gpreferential" value="1" }
+                      <span class="label label-success">特惠</span>
+                    {else/}
+                      <span class="label label-warning">否</span>
+                    {/eq}
+
+                  </td>
+                  <td class="hidden-xs">
+                    {eq name="$vo.gstatic" value="1" }
+                      <span class="label label-success">已上架</span>
+                    {else/}
+                      <span class="label label-warning">已下架</span>
+                    {/eq}
+                  </td>
+                  <td>
+                    {$vo.gtime}
+                  </td>
+                  <td class="actions">
+                    <div class="action-buttons">
+                      {eq name="$vo.gstatic" value="1"}
+                        <a title="下架" class="table-actions" href="{:url('home/goodsOff','gid='.$vo.gid)}"><i class="icon-circle-arrow-down"></i></a>
+                      {else/}
+                        <a title="上架" class="table-actions" href="{:url('home/goodsOn','gid='.$vo.gid)}"><i class="icon-circle-arrow-up"></i></a>
+                      {/eq}
+                        <a title="编辑" class="table-actions" href="{:url('home/goodsEdit','gid='.$vo.gid)}"><i class="icon-edit"></i></a>
+                      <a title="删除" class="table-actions" href="{:url('home/goodsDel','gid='.$vo.gid)}" onclick="if(confirm('确定删除？删除后无法恢复！')) return true; return false;"><i class="icon-trash"></i></a>
+                    </div>
+                  </td>
+                </tr>
+              {/volist}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+	  </div>
+	  <!-- end DataTables Example -->
+	</div>
+{include file="footer"}

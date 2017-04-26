@@ -11,7 +11,7 @@ class HomeModel extends \think\Model {
     public function __construct($table = '') {
     	parent::__construct();
     	
-    	$this->M = Db::name($this->table ? $this->table : $table); 
+    	$this->M = Db::name($table ? $table : $this->table); 
     }
 
 

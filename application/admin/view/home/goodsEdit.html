@@ -3,7 +3,7 @@
       <div class="container-fluid main-content">
         <div class="page-title">
           <h1>
-            发布新商品
+            编辑商品信息
           </h1>
         </div>
         <div class="row">
@@ -15,18 +15,18 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-9">
                   <div class="widget-content padded">
-                    <form action="{:url('home/goodsNewDo')}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <form action="{:url('home/goodsEdit','gid='.$goodInfo.gid.'&action=do')}" class="form-horizontal" method="post" enctype="multipart/form-data">
 
                       <div class="form-group">
                         <label class="control-label col-md-2">商品名称<em style="color: red;">*</em></label>
                         <div class="col-md-5">
-                          <input class="form-control" placeholder="请输入商品名称" name="gname" type="text" required="">
+                          <input class="form-control" placeholder="请输入商品名称" name="gname" value="{$goodInfo.gname}" type="text" required="">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-2">商品优惠信息<em style="color: red;">*</em></label>
                         <div class="col-md-5">
-                          <textarea placeholder="请输入商品优惠信息" name="gdec_s" class="form-control" rows="3" required=""></textarea>
+                          <textarea placeholder="请输入商品优惠信息" name="gdec_s" class="form-control" rows="3" required="">{$goodInfo.gdec_s}</textarea>
                         </div>
 
                       </div>
@@ -35,7 +35,11 @@
                         <div class="col-md-2">
                           <select name="gtype_id" class="form-control" required >
                             {volist name="typeList" id="vo"}
-                                <option value="{$vo.gtype_id}">{$vo.gtype_name}</option>
+                                {eq name="$vo.gtype_id" value="$goodInfo.gtype_id" }
+                                  <option value="{$vo.gtype_id}" selected="">{$vo.gtype_name}</option>
+                                {else/}
+                                  <option value="{$vo.gtype_id}">{$vo.gtype_name}</option>
+                                {/eq}
                             {/volist}
                           </select>
                         </div>
@@ -43,7 +47,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-2">商品规格及价格<em style="color: red;">*</em></label>
                         <div class="col-md-3">
-                          <textarea placeholder="规格一/50.5&#10;规格二/99.0" name="gpri" class="form-control" rows="4" required=""></textarea>
+                          <textarea placeholder="规格一/50.5&#10;规格二/99.0" name="gpri" class="form-control" rows="4" required="">{$goodInfo.gpri}</textarea>
                         </div>
                         <em style="color: #afafaf;">(规格名称可自定义,例：规格/50.5 ps:换行继续填写)</em>
                       </div>
@@ -51,15 +55,27 @@
                       <div class="form-group">
                         <label class="control-label col-md-2">销售方式<em style="color: red;">*</em></label>
                         <div class="col-md-7">
-                          <label class="radio" for="option1">
-                            <input checked id="option1" name="sale_mode" type="radio" value="1">
-                            <span>现货/3个工作日内发货</span>
-                            <input id="option1" name="name1" type="hidden" value="现货/3个工作日内发货">
-                          </label>
-                          <label class="radio" for="option2">
-                            <input id="option2" name="sale_mode" type="radio" value="2">
-                            <span>预定/ <input name="name2" placeholder="例.2017年05月06日发货" type="text"></span>
-                          </label>
+                          {eq name="$goodInfo.sale_mode.mode" value="1"}
+                            <label class="radio" for="option1">
+                              <input checked id="option1" name="sale_mode" type="radio" value="1">
+                              <span>现货/3个工作日内发货</span>
+                              <input id="option1" name="name1" type="hidden" value="现货/3个工作日内发货">
+                            </label>
+                            <label class="radio" for="option2">
+                              <input id="option2" name="sale_mode" type="radio" value="2">
+                              <span>预定/ <input name="name2" placeholder="例.2017年05月06日发货" type="text"></span>
+                            </label>
+                          {else/}
+                            <label class="radio" for="option1">
+                              <input id="option1" name="sale_mode" type="radio" value="1">
+                              <span>现货/3个工作日内发货</span>
+                              <input id="option1" name="name1" type="hidden" value="现货/3个工作日内发货">
+                            </label>
+                            <label class="radio" for="option2">
+                              <input checked id="option2" name="sale_mode" type="radio" value="2">
+                              <span>预定/ <input name="name2" placeholder="例.2017年05月06日发货" type="text" value="{$goodInfo.sale_mode.name}"></span>
+                            </label>
+                          {/eq}
                         </div>
                       </div>
                       <div class="form-group">
@@ -71,6 +87,16 @@
                               <section class="img-section">
                                   <p class="up-p"><span class="up-span"><em>最多可以上传5张主图，马上上传</em></span></p>
                                 <div class="z_photo upimg-div clear" >
+                                {volist name="$goodInfo.gimg.img" id="vo"}
+                                  <section class="up-section fl">
+                                    <span class="up-span"></span>
+                                    <p class="close-upimg"></p>
+                                    <img class="up-img" src="{$goodInfo.gimg.path}{$vo}">
+                                    <p class="img-name-p">{$vo}</p>
+                                    <input id="taglocation" name="gimg[]" value="{$vo}" type="hidden">
+                                  </section>
+                                {/volist}
+
                                   <section class="z_file fl">
                                     <img src="__PUBLIC__/imgUp/img/a11.png" class="add-img">
                                     <input type="file" name="gimg" id="fileUpload" class="file" value="" accept="image/jpg,image/jpeg,image/png,image/bmp" />
@@ -92,7 +118,7 @@
                         <label class="control-label col-md-2">商品描述<em style="color: red;">*</em></label>
                         <div class="col-md-9">
                           <!--style给定宽度可以影响编辑器的最终宽度-->
-                          <script type="text/plain" id="myEditor" name="gdec_l" style="width: 100%; height: 300px;">填写商品描述</script>
+                          <script type="text/plain" id="myEditor" name="gdec_l" style="width: 100%; height: 300px;">{$goodInfo.gdec_l}</script>
                         </div>
                           <!-- 配置文件 -->
                           <script type="text/javascript" src="__PUBLIC__/umeditor/third-party/template.min.js"></script>
@@ -109,9 +135,10 @@
                         <label class="control-label col-md-2">是否精选</label>
                         <div class="col-md-2">
                           <select name="gchoice" class="form-control">
-                            <option value="0" selected="selected">默认</option>
-                            <option value="1">精选</option>
-                            <option value="2">首页顶部精选</option>
+
+                            <option value="0" {eq name="$goodInfo.gchoice" value="0"} selected="selected" {/eq}>默认</option>
+                            <option value="1" {eq name="$goodInfo.gchoice" value="1"} selected="selected" {/eq}>精选</option>
+                            <option value="2" {eq name="$goodInfo.gchoice" value="2"} selected="selected" {/eq}>首页顶部精选</option>
                           </select>
                         </div>
                       </div>
@@ -119,7 +146,7 @@
                         <label class="control-label col-md-2">是否特惠</label>
                         <div class="col-md-7 clearfix">
                           <div class="holder">
-                            <input class="check-ios" id="check1" name="gpreferential" type="checkbox" value="1">
+                            <input {eq name="$goodInfo.gpreferential" value="1"} checked="checked" {/eq} class="check-ios" id="check1" name="gpreferential" type="checkbox" value="1">
                             <label for="check1"></label>
                             <span></span>
                           </div>
@@ -145,3 +172,6 @@
       </div>
 
 {include file="footer"}
+
+
+
