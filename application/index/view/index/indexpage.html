@@ -1,0 +1,107 @@
+<!-- 最新商品 -->
+		<section class="product box cms-module-fillprice price-loaded">
+			<div class="title title01">最新商品</div>
+			<a href="{:url('index/topage', 'page=product')}">
+				<img class="lazyload lazyloaded" width="750" src="__PUBLIC__/img/test4.jpg" alt="">
+			</a>
+			<ul>
+				{volist name="new" id="pic" }
+				<li class="cms-src-item">
+					<a href="#" style="text-decoration: none;">
+						<div class="product-pic" style="position:relative;">
+							<img src="__PUBLIC__/img/{$pic.gimg_url}" alt="">
+						</div>					
+						<h2 class="ellipsis2">{$pic.gname}</h2>
+						<div class="product-price">
+							<div class="product-pricer1">
+								<em class="yen">¥</em>
+								<span class="price cms-fill-price">{$pic.gpri}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				{/volist}					
+			</ul>
+			<div class="bannerProduct"></div>
+		</section>
+
+		<!-- 文创精选 -->
+		<section class="product box cms-module-fillprice price-loaded">
+			<div class="title title01">文创精选</div>
+				<a href="{:url('index/topage', 'page=product')}">
+				<img class="lazyload lazyloaded" width="750" src="__PUBLIC__/img/test2.jpg" alt="">
+			</a>
+			<ul>
+				{volist name="wenchuang" id="pic" }
+				<li class="cms-src-item">
+					<a href="#" style="text-decoration: none;">
+						<div class="product-pic" style="position:relative;">
+							<img src="__PUBLIC__/img/{$pic.gimg_url}" alt="">
+						</div>					
+						<h2 class="ellipsis2">{$pic.gname}</h2>
+						<div class="product-price">
+							<div class="product-pricer1">
+								<em class="yen">¥</em>
+								<span class="price cms-fill-price">{$pic.gpri}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				{/volist}									
+			</ul>
+			<div class="bannerProduct"></div>
+		</section>		
+
+		<!-- 文具精选 -->
+		<section class="product box cms-module-fillprice price-loaded">
+			<div class="title title01">文具精选</div>
+				<a href="{:url('index/topage', 'page=product')}">
+				<img class="lazyload lazyloaded" width="750" src="__PUBLIC__/img/test3.jpg" alt="">
+			</a>
+			<ul>
+				{volist name="wenju" id="pic" }
+				<li class="cms-src-item">
+					<a href="#" style="text-decoration: none;">
+						<div class="product-pic" style="position:relative;">
+							<img src="__PUBLIC__/img/{$pic.gimg_url}" alt="">
+						</div>					
+						<h2 class="ellipsis2">{$pic.gname}</h2>
+						<div class="product-price">
+							<div class="product-pricer1">
+								<em class="yen">¥</em>
+								<span class="price cms-fill-price">{$pic.gpri}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				{/volist}										
+			</ul>
+			<div class="bannerProduct"></div>
+		</section>	
+
+		<!-- 大师作品 -->
+		<section class="product box cms-module-fillprice price-loaded">
+			<div class="title title01">大师作品</div>
+				<a href="{:url('index/topage', 'page=product')}">
+				<img class="lazyload lazyloaded" width="750" src="__PUBLIC__/img/test5.jpg" alt="">
+			</a>
+			<ul>
+				{volist name="dszp" id="pic" }
+				<li class="cms-src-item">
+					<a href="#" style="text-decoration: none;">
+						<div class="product-pic" style="position:relative;">
+							<img src="__PUBLIC__/img/{$pic.gimg_url}" alt="">
+						</div>					
+						<h2 class="ellipsis2">{$pic.gname}</h2>
+						<div class="product-price">
+							<div class="product-pricer1">
+								<em class="yen">¥</em>
+								<span class="price cms-fill-price">{$pic.gpri}</span>
+							</div>
+						</div>
+					</a>
+				</li>
+				{/volist}										
+			</ul>
+		</section>
+		</div>
