@@ -24,19 +24,34 @@ class Index extends Base {
 	}
 
 	public function getCarousel(){
-		$carousel = Db::view('gimg','gimg_url')
-    	->where('gimg_choice','=',1)
+		$carousel = Db::table('goods')
+    	->where('gchoice','=',2)
     	->select();
-		$this->assign('carousel', $carousel);
+        foreach ($carousel as $key => &$value) {
+        	foreach ($value as $key1 => &$value1) {
+        		if($key1 == 'gpic'){
+        			        	$data = json_decode($value1);
+        			        	$value1 = $data[0];
+        		}
+        	}
+        }
+        $this->assign('carousel', $carousel);
         $this->assign('count', count($carousel)>6?6:count($carousel));
         $this->assign('flag', 1);
 	}
 
 	public function getRecommend(){
-		$recommend = Db::view('gimg','gimg_url')
-		->view('goods', 'gname, gpri', 'gimg.gimg_id = goods.gimg_id')
-    	->where('gchoice','=',2)
+		$recommend = Db::table('goods')
+    	->where('gchoice','>',0)
     	->select();
+        foreach ($recommend as $key => &$value) {
+        	foreach ($value as $key1 => &$value1) {
+        		if($key1 == 'gpic'){
+        			        	$data = json_decode($value1);
+        			        	$value1 = $data[0];
+        		}
+        	}
+        }
 		$this->assign('recommend', $recommend);
 	}
 
@@ -60,38 +75,66 @@ class Index extends Base {
 	{
 		switch ($module) {
 			case 'new':
-				$list = Db::view('gimg','gimg_url')
-	    		->view('goods','gname, gpri','goods.gimg_id=gimg.gimg_id')
-	    		->where('gchoice','>',1)
-	    		->order('gimg.gid','desc')
+				$list = Db::table('goods')
+	    		->where('gchoice','>',0)
+	    		->order('gid','desc')
 	    		->select();
+		        foreach ($list as $key => &$value) {
+		        	foreach ($value as $key1 => &$value1) {
+		        		if($key1 == 'gpic'){
+		        			        	$data = json_decode($value1);
+		        			        	$value1 = $data[0];
+		        		}
+		        	}
+	        	}
 				break;
 
 			case 'tehui':
-				$list = Db::view('gimg','gimg_url')
-	    		->view('goods','gname, gpri','goods.gimg_id=gimg.gimg_id')
+				$list = Db::table('goods')
 	    		->where('gpreferential','=',1)
-	    		->order('gimg.gid','desc')
+	    		->order('gid','desc')
 	    		->select();
+		        foreach ($list as $key => &$value) {
+		        	foreach ($value as $key1 => &$value1) {
+		        		if($key1 == 'gpic'){
+		        			        	$data = json_decode($value1);
+		        			        	$value1 = $data[0];
+		        		}
+		        	}
+	        	}
 				break;
 
 			case 'rexiao':
-				$list = Db::view('gimg','gimg_url')
-	    		->view('goods','gname, gpri','goods.gimg_id=gimg.gimg_id')
+				$list = Db::table('goods')
 	    		->order('gsales','desc')
 	    		->select();
+	    		foreach ($list as $key => &$value) {
+		        	foreach ($value as $key1 => &$value1) {
+		        		if($key1 == 'gpic'){
+		        			        	$data = json_decode($value1);
+		        			        	$value1 = $data[0];
+		        		}
+		        	}
+	        	}
 				break;
 
 			default:
-				$list = Db::view('gimg','gimg_url')
-	    		->view('goods','gname, gpri','goods.gimg_id=gimg.gimg_id')
+				$list = Db::table('goods')
+				->view('goods','gname, gpri, gpic')
 	    		->view('goods_class','gtype_id','goods_class.gtype_id=goods.gtype_id')
-	    		->where('gchoice','>',1)
+	    		->where('gchoice','>',0)
 	    		->where('gtype_name',$module)
 	    		->select();
+	    		foreach ($list as $key => &$value) {
+		        	foreach ($value as $key1 => &$value1) {
+		        		if($key1 == 'gpic'){
+		        			        	$data = json_decode($value1);
+		        			        	$value1 = $data[0];
+		        		}
+		        	}
+	        	}
 				break;
 		}
-
 		$this->assign("$module", $list);
 	}
 
@@ -125,4 +168,5 @@ class Index extends Base {
 			return $name;
 			}
 		}
+
 }
