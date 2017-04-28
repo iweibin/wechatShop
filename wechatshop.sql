@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-04-26 14:22:13
+-- Generation Time: 2017-04-27 17:06:59
 -- 服务器版本： 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -42,37 +42,6 @@ CREATE TABLE `address` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `gimg`
---
-
-CREATE TABLE `gimg` (
-  `gimg_id` int(10) UNSIGNED NOT NULL COMMENT '商品图片编号',
-  `gimg_url` varchar(100) NOT NULL COMMENT '商品图片url',
-  `gid` int(10) UNSIGNED NOT NULL COMMENT '商品编号',
-  `gimg_choice` int(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上轮播图（是1，否0））'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品图片表';
-
---
--- 转存表中的数据 `gimg`
---
-
-INSERT INTO `gimg` (`gimg_id`, `gimg_url`, `gid`, `gimg_choice`) VALUES
-(3, 'test1.jpg', 99, 1),
-(4, 'test2.jpg', 99, 1),
-(5, 'test3.jpg', 99, 1),
-(6, 'test4.jpg', 99, 1),
-(7, 'test5.jpg', 99, 1),
-(8, 'pingguo1.png', 1, 0),
-(9, 'pingguo2.png', 1, 0),
-(10, 'yezi.png', 2, 0),
-(11, 'xiangjiao.png', 3, 0),
-(12, 'juzi.png', 4, 0),
-(13, 'xigua.png', 5, 0),
-(14, 'pingguo3.png', 1, 0);
-
--- --------------------------------------------------------
-
---
 -- 表的结构 `goods`
 --
 
@@ -83,24 +52,25 @@ CREATE TABLE `goods` (
   `gimg_id` int(10) UNSIGNED NOT NULL COMMENT '商品主图片',
   `gdec_s` varchar(100) NOT NULL COMMENT '商品主页描述（短）',
   `gdec_l` text COMMENT '商品主页描述（长）',
-  `gpri` int(10) UNSIGNED NOT NULL COMMENT '商品价格',
+  `gpri` varchar(100) NOT NULL COMMENT '商品价格',
   `gnum` int(10) UNSIGNED NOT NULL COMMENT '商品数量',
   `gchoice` int(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否精选（总精选2，次精选1，否0）',
   `gpreferential` int(1) DEFAULT '0' COMMENT '是否特惠',
   `gclass_id` int(10) UNSIGNED NOT NULL COMMENT '商品购买时分类模块的编号',
-  `gsales` int(8) DEFAULT '0' COMMENT '产品销量'
+  `gsales` int(8) DEFAULT '0' COMMENT '产品销量',
+  `gpic` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品信息表';
 
 --
 -- 转存表中的数据 `goods`
 --
 
-INSERT INTO `goods` (`gid`, `gname`, `gtype_id`, `gimg_id`, `gdec_s`, `gdec_l`, `gpri`, `gnum`, `gchoice`, `gpreferential`, `gclass_id`, `gsales`) VALUES
-(1, 'pingguo', 1, 9, '', NULL, 10, 10, 2, 0, 0, 12001),
-(2, 'yezi', 1, 10, '', NULL, 12, 0, 2, 1, 0, 224),
-(3, 'xiangjiao', 2, 11, '', NULL, 23, 0, 2, 1, 0, 4524),
-(4, 'juzi', 3, 12, '', NULL, 50, 0, 2, 0, 0, 12),
-(5, 'xigua', 2, 13, '', NULL, 99, 0, 2, 1, 0, 52);
+INSERT INTO `goods` (`gid`, `gname`, `gtype_id`, `gimg_id`, `gdec_s`, `gdec_l`, `gpri`, `gnum`, `gchoice`, `gpreferential`, `gclass_id`, `gsales`, `gpic`) VALUES
+(1, 'pingguo', 1, 9, '', NULL, '10', 10, 2, 0, 0, 12001, '["pingguo1.png","pingguo2.png","pingguo3.png"]'),
+(2, 'yezi', 1, 10, '', NULL, '12', 0, 2, 1, 0, 224, '["yezi.png"]'),
+(3, 'xiangjiao', 2, 11, '', NULL, '23', 0, 2, 1, 0, 4524, '["xiangjiao.png"]'),
+(4, 'juzi', 3, 12, '', NULL, '50', 0, 2, 0, 0, 12, '["juzi.png"]'),
+(5, 'xigua', 2, 13, '', NULL, '99', 0, 2, 1, 0, 52, '["xigua.png"]');
 
 -- --------------------------------------------------------
 
@@ -220,12 +190,6 @@ ALTER TABLE `address`
   ADD PRIMARY KEY (`add_id`);
 
 --
--- Indexes for table `gimg`
---
-ALTER TABLE `gimg`
-  ADD PRIMARY KEY (`gimg_id`);
-
---
 -- Indexes for table `goods`
 --
 ALTER TABLE `goods`
@@ -282,11 +246,6 @@ ALTER TABLE `works_pic`
 --
 ALTER TABLE `address`
   MODIFY `add_id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键';
---
--- 使用表AUTO_INCREMENT `gimg`
---
-ALTER TABLE `gimg`
-  MODIFY `gimg_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '商品图片编号', AUTO_INCREMENT=15;
 --
 -- 使用表AUTO_INCREMENT `goods`
 --
