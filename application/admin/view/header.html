@@ -3,7 +3,7 @@
   
 <head>
     <title>
-      Admin |
+      Admin | 台创工场微信商城
     </title>
     <!--<link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" media="all" rel="stylesheet" type="text/css" />-->
     <link href="__PUBLIC__/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" />
@@ -93,21 +93,23 @@
                   </li>
                 </ul>
               </li>
-              <li class="dropdown"><a data-toggle="dropdown" href="#">
+              <li class="dropdown"><a {in name='_controller' value='masterList,masterNew,masterEdit,workList,workNew'} class="current" {/in} data-toggle="dropdown" href="#">
                 <span aria-hidden="true" class="se7en-charts"></span>大师作品<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="calendar.html">大师信息表</a>
+                    <a href="{:url('home/masterList')}">大师列表</a>
                   </li>
                   <li>
-                    <a href="calendar.html">大师作品表</a>
+                    <a href="{:url('home/masterNew')}">添加大师</a>
                   </li>
-                  
+                  <li>
+                    <a href="{:url('home/workList')}">大师作品表</a>
+                  </li>
+                  <li>
+                    <a href="{:url('home/workNew')}">发布大师作品</a>
+                  </li>
 
                 </ul>
-              </li>
-              <li><a href="gallery.html">
-                <span aria-hidden="true" class="se7en-gear"></span>系统设置</a>
               </li>
             </ul>
           </div>

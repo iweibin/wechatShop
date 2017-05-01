@@ -1,8 +1,11 @@
 <?php
 namespace app\admin\controller;
 use app\admin\controller\Base;
+use app\admin\model\User;
 use app\admin\model\HomeModel;
 use app\admin\model\Goods;
+use app\admin\model\Master;
+use app\admin\model\Works;
 
 
 class Home extends Base {
@@ -18,6 +21,41 @@ class Home extends Base {
 
 		$this->assign('_controller', 'index');
 		return $this->fetch('/home');
+	}
+
+	public function profile($action = '') {
+
+		if($action == '' ) {
+			$logined = session('user_admin');
+
+			$M = new User();
+			$admin = $M->getUserInfo($logined['username']);
+
+			$this->assign('profile' ,$admin);
+			$this->assign('_controller', 'profile');
+			return $this->fetch('profile');
+		} else {
+
+			$data = input('post.');
+
+			$username = $data['username'];
+
+			$M = new User();
+
+			if( $data['password'] == '') {
+				unset($data['password']);
+			} else {
+				$info = $M->getUserInfo($username);
+				$data['password'] = md5(md5($data['password']).$info['user_key']);
+			}
+
+
+			if($M->update_info($username ,$data)) {
+				echo "<script>alert('修改成功！');window.location.href='".url('home/index')."'</script>";
+			} else {
+				echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
+			}
+		}
 	}
 
 	public function userList() {
@@ -40,7 +78,7 @@ class Home extends Base {
 		if( $M->userDel($uid) ) {
 			echo "<script>alert('删除成功！');window.location.href='".url('home/userList')."'</script>";
 		} else {
-			echo "<script>alert('操作失败，请重试！');window.location.href='".url('home/userList')."'</script>";
+			echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
 		}
 	}
 
@@ -131,7 +169,7 @@ class Home extends Base {
 		if( $M->insertGoods($data) ) {
 			echo "<script>alert('添加成功！');window.location.href='".url('home/goodsList')."'</script>";
 		} else {
-			echo "<script>alert('操作失败，请重试！');window.location.href='".url('home/goodsNew')."'</script>";
+			echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
 		}
 	}
 
@@ -235,20 +273,275 @@ class Home extends Base {
 		}
 	}
 
+	public function masterList() {
+
+		$M = new Master();
+
+		$masterList = $M->getMasterList();
+
+		for ($i=0; $i < count($masterList); $i++) { 
+			$masterList[$i]['master_works'] = count($M->getWorksById($masterList[$i]['master_id']));
+		}
 
 
-
-
-
-	public function test() {
-		$pic = array('20170224/pic1.png','20170224/pic2.png','20170224/pic3.png');
-		$gpri = array(
-			'规格一' => "50.5",
-			'规格二' => "100.0",
-			'规格三' => "145.0"
-			);
-
-		echo json_encode($data);
+		$this->assign('masterList',$masterList);
+		$this->assign('_controller','masterList');
+		return $this->fetch('masterList');
 	}
+
+
+	public function masterNew( $action = '') {
+
+		if( $action == '') {
+
+			$this->assign('_controller','masterNew');
+			return $this->fetch('masterNew');
+		} else {
+			$data = input('post.');
+
+			// 获取表单上传文件 例如上传了001.jpg
+		    $file = request()->file('master_picture');
+		    // 移动到框架应用根目录/public/uploads/ 目录下
+		    $info = $file->validate(['size'=>1024*1024*10,'ext'=>'jpg,png,gif,bmp,jpeg'])->move(ROOT_PATH . 'public' . DS . 'uploads');
+		    if( $info ) {
+		    	$data['master_picture'] = $info->getSaveName();
+		    }
+
+		    $M = new Master();
+
+		    if( $M->insertMaster($data) ) {
+		    	echo "<script>alert('添加成功！');window.location.href='".url('home/masterList')."'</script>";
+		    }
+		}
+
+	}
+
+	public function masterEdit( $mid ,$action = '' ) {
+		if( $action == '' ) {
+
+			$M = new Master();
+
+			$master = $M->getMasterInfo($mid);
+
+			$master['master_picture'] = URL_PATH.'uploads/'.$master['master_picture'];
+
+			// var_dump($master);exit;
+			$this->assign('master' ,$master);
+			$this->assign('_controller' ,'masterEdit');
+			return $this->fetch('masterEdit');
+		} else {
+			$data = input('post.');
+
+			// 获取表单上传文件 例如上传了001.jpg
+		    $file = request()->file('master_picture');
+		    // 移动到框架应用根目录/public/uploads/ 目录下
+		    $info = $file->validate(['size'=>1024*1024*10,'ext'=>'jpg,png,gif,bmp,jpeg'])->move(ROOT_PATH . 'public' . DS . 'uploads');
+		    if( $info ) {
+		    	$data['master_picture'] = $info->getSaveName();
+		    }
+
+		    $M = new Master();
+
+		    if( $M->updateMaster($mid,$data) ) {
+		    	echo "<script>alert('修改成功！');window.location.href='".url('home/masterList')."'</script>";
+		    } else {
+		    	echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
+		    }
+		}
+	}
+
+	public function masterDel( $mid ) {
+		$M = new Master();
+
+		if( $M->deleteMaster($mid) ) {
+			echo "<script>alert('删除成功！');window.location.href='".url('home/masterList')."'</script>";
+		} else {
+			echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
+		}
+	}
+
+
+	public function workList() {
+
+		$M = new Works();
+		$workList = $M->getWorkList();
+
+		for ($i=0; $i < count($workList); $i++) { 
+			$workList[$i]['works_pic'] = json_decode($workList[$i]['works_pic'] ,TRUE);
+
+			foreach ($workList[$i]['works_pic'] as $key => $val) {
+				$workList[$i]['works_pic'][$key] = URL_PATH.'uploads/'.$val;
+			}
+
+			$workList[$i]['works_prize'] = json_decode($workList[$i]['works_prize'] ,TRUE);
+			$workList[$i]['time'] = date('Y/m/d' ,$workList[$i]['time']);
+
+		}
+		$this->assign('workList' ,$workList);
+
+		$this->assign('_controller' ,'workList');
+		return $this->fetch('workList');
+	}
+
+	public function workNew( $action = '' ) {
+
+		if( $action == '' ) {
+			$M = new Master();
+
+			$nameList = $M->getNameList();
+
+			$this->assign('nameList' ,$nameList);
+			$this->assign('_controller' ,'workNew');
+			return $this->fetch('workNew');
+		} else {
+
+			$data = input('post.');
+
+			$gpri = $data['works_prize'];
+			$pri_arr = explode("\r\n", trim($gpri));
+			foreach ($pri_arr as $value) {
+				$arr = explode('/', $value);
+				$gpri_arr[$arr[0]] = $arr[1]; 
+			}
+			$data['works_prize'] = json_encode($gpri_arr);
+			$data['works_pic'] = json_encode($data['gimg']);
+
+			unset($data['gimg']);
+			if( $data['sale_mode'] == "2") {
+				$data['sale_mode'] = json_encode(array(
+					'mode'	=> 2,
+					'name'	=> $data['name2']
+				));
+			} else {
+				$data['sale_mode'] = json_encode(array(
+					'mode'	=> 1,
+					'name'	=> $data['name1']
+				));
+			}
+
+
+			unset($data['name1']);
+			unset($data['name2']);
+			$data['time'] = time();
+
+			$M = new Works();
+
+			if( $M->insertWorks($data) ) {
+				echo "<script>alert('添加成功！');window.location.href='".url('home/workList')."'</script>";
+			} else {
+				echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
+			}	
+		}
+	}
+
+	public function workEdit( $wid ,$action = '') {
+
+		if( $action == "" ) {
+			$M = new Works();
+			$workInfo = $M->getWorkByid($wid);
+
+
+			$workInfo['works_pic'] = array(
+				'img'	=> json_decode($workInfo['works_pic'] ,TRUE),
+				'path'	=> URL_PATH.'uploads/'
+				);
+			
+			$workInfo['works_prize'] = json_decode($workInfo['works_prize'] ,TRUE);
+
+			foreach ($workInfo['works_prize'] as $key => $value) {
+				$arr1[] = $key.'/'.$value; 
+			}
+			$workInfo['works_prize'] = implode("\r\n" ,$arr1);
+
+			$workInfo['sale_mode'] = json_decode($workInfo['sale_mode'] ,TRUE);
+
+			$workInfo['time'] = date('Y/m/d' ,$workInfo['time']);
+
+			$M = new Master();
+			$nameList = $M->getNameList();
+			$this->assign('nameList' ,$nameList);
+			// var_dump($workInfo);exit;
+			$this->assign('workInfo',$workInfo);
+			$this->assign('_controller', 'workEdit');
+			return $this->fetch('workEdit');
+		} else {
+
+			$data = input('post.');
+
+			$gpri = $data['works_prize'];
+			$pri_arr = explode("\r\n", trim($gpri));
+			foreach ($pri_arr as $value) {
+				$arr = explode('/', $value);
+				$gpri_arr[$arr[0]] = $arr[1]; 
+			}
+			$data['works_prize'] = json_encode($gpri_arr);
+			$data['works_pic'] = json_encode($data['gimg']);
+
+			unset($data['gimg']);
+			if( $data['sale_mode'] == "2") {
+				$data['sale_mode'] = json_encode(array(
+					'mode'	=> 2,
+					'name'	=> $data['name2']
+				));
+			} else {
+				$data['sale_mode'] = json_encode(array(
+					'mode'	=> 1,
+					'name'	=> $data['name1']
+				));
+			}
+
+
+			unset($data['name1']);
+			unset($data['name2']);
+			$data['time'] = time();
+
+			$M = new Works();
+
+			if( $M->updateWork( $wid ,$data) ) {
+				echo "<script>alert('更新成功！');window.location.href='".url('home/workList')."'</script>";
+			} else {
+				echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
+			}
+		}	
+	}
+
+ 	public function workOn( $wid ) {
+		$M = new Works();
+
+		if( $M->updateWork($wid ,['works_status'=>1]) ) {
+			echo "<script>alert('上架成功！');window.location.href='".url('home/workList')."'</script>";
+		} else {
+			echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
+		}
+	}
+ 	public function workOff( $wid ) {
+		$M = new Works();
+
+		if( $M->updateWork($wid ,['works_status'=>0]) ) {
+			echo "<script>alert('下架成功！');window.location.href='".url('home/workList')."'</script>";
+		} else {
+			echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
+		}
+	}
+
+	public function workDel( $wid ) {
+		$M = new Works();
+
+		if( $M->deleteWork($wid) ) {
+			echo "<script>alert('删除成功！');window.location.href='".url('home/workList')."'</script>";
+		} else {
+			echo "<script>alert('操作失败，请重试！');window.history.go(-1);</script>";
+		}
+	}
+
+
+
+
+
+
+
+
+
+
 
 }

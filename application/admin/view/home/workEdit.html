@@ -1,0 +1,149 @@
+{include file="header"}
+
+      <div class="container-fluid main-content">
+        <div class="page-title">
+          <h1>
+            发布新作品
+          </h1>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+              <div class="widget-container fluid-height clearfix">
+                <div class="heading">
+                  <i class="icon-reorder"></i>作品信息
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-9">
+                  <div class="widget-content padded">
+                    <form action="{:url('home/workEdit','$wid='.$workInfo.works_id.'&action=do')}" class="form-horizontal" method="post" enctype="multipart/form-data">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2">作品名称<em style="color: red;">*</em></label>
+                        <div class="col-md-5">
+                          <input class="form-control" placeholder="请输入商品名称" name="works_name" type="text" required="" value="{$workInfo.works_name}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">作品简介<em style="color: red;">*</em></label>
+                        <div class="col-md-5">
+                          <textarea placeholder="请输入作品简介" name="works_summary" class="form-control" rows="3" required="">{$workInfo.works_summary}</textarea>
+                        </div>
+
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">大师名称<em style="color: red;">*</em></label>
+                        <div class="col-md-2">
+                          <select name="master_id" class="form-control" required >
+                            
+                            {volist name="nameList" id="vo"}
+                                <option value="{$vo.master_id}" {eq name="$vo.master_id" value="$workInfo.master_id" } selected="" {/eq} >{$vo.master_name}</option>
+                            {/volist}
+                            
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">作品规格及价格<em style="color: red;">*</em></label>
+                        <div class="col-md-3">
+                          <textarea placeholder="规格一/50.5&#10;规格二/99.0" name="works_prize" class="form-control" rows="4" required="">{$workInfo.works_prize}</textarea>
+                        </div>
+                        <em style="color: #afafaf;">(规格名称可自定义,例：规格/50.5 ps:换行继续填写)</em>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2">销售方式<em style="color: red;">*</em></label>
+                        <div class="col-md-7">
+                          {eq name="$workInfo.sale_mode.mode" value="1"}
+                            <label class="radio" for="option1">
+                              <input checked id="option1" name="sale_mode" type="radio" value="1">
+                              <span>现货/3个工作日内发货</span>
+                              <input id="option1" name="name1" type="hidden" value="现货/3个工作日内发货">
+                            </label>
+                            <label class="radio" for="option2">
+                              <input id="option2" name="sale_mode" type="radio" value="2">
+                              <span>预定/ <input name="name2" placeholder="例.2017年05月06日发货" type="text"></span>
+                            </label>
+                          {else/}
+                            <label class="radio" for="option1">
+                              <input id="option1" name="sale_mode" type="radio" value="1">
+                              <span>现货/3个工作日内发货</span>
+                              <input id="option1" name="name1" type="hidden" value="现货/3个工作日内发货">
+                            </label>
+                            <label class="radio" for="option2">
+                              <input checked id="option2" name="sale_mode" type="radio" value="2">
+                              <span>预定/ <input name="name2" placeholder="例.2017年05月06日发货" type="text" value="{$workInfo.sale_mode.name}"></span>
+                            </label>
+                          {/eq}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">作品主图<em style="color: red;">*</em></label>
+                        <div class="col-md-9">
+                            <link href="__PUBLIC__/imgUp/css/common.css" type="text/css" rel="stylesheet"/>
+                            <link href="__PUBLIC__/imgUp/css/index.css" type="text/css" rel="stylesheet"/>
+                            <div class="img-box">
+                              <section class="img-section">
+                                  <p class="up-p"><span class="up-span"><em>最多可以上传5张主图，马上上传</em></span></p>
+                                <div class="z_photo upimg-div clear" >
+                                  {volist name="$workInfo.works_pic.img" id="vo"}
+                                  <section class="up-section fl">
+                                    <span class="up-span"></span>
+                                    <p class="close-upimg"></p>
+                                    <img class="up-img" src="{$workInfo.works_pic.path}{$vo}">
+                                    <p class="img-name-p">{$vo}</p>
+                                    <input id="taglocation" name="gimg[]" value="{$vo}" type="hidden">
+                                  </section>
+                                {/volist}
+
+                                  <section class="z_file fl">
+                                    <img src="__PUBLIC__/imgUp/img/a11.png" class="add-img">
+                                    <input type="file" name="works_pic" id="fileUpload" class="file" value="" accept="image/jpg,image/jpeg,image/png,image/bmp" />
+                                  </section>
+                                </div>
+                               </section>
+                            </div>
+                                <aside class="mask works-mask">
+                              <div class="mask-content">
+                                <p class="del-p">您确定要删除作品图片吗？</p>
+                                <p class="check-p"><span class="del-com wsdel-ok">确定</span><span class="wsdel-no">取消</span></p>
+                              </div>
+                            </aside>
+                            <!-- <script src="__PUBLIC__/imgUp/js/imgPlugin.js"></script> -->
+                            <script src="__PUBLIC__/imgUp/js/imgUp.js"></script>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-2">作品详细描述<em style="color: red;">*</em></label>
+                        <div class="col-md-9">
+                          <!--style给定宽度可以影响编辑器的最终宽度-->
+                          <script type="text/plain" id="myEditor" name="works_dec" style="width: 100%; height: 300px;">{$workInfo.works_dec}</script>
+                        </div>
+                          <!-- 配置文件 -->
+                          <script type="text/javascript" src="__PUBLIC__/umeditor/third-party/template.min.js"></script>
+                          <script type="text/javascript" src="__PUBLIC__/umeditor/umeditor.config.js"></script>
+                          <!-- 编辑器源码文件 -->
+                          <script type="text/javascript" src="__PUBLIC__/umeditor/umeditor.min.js"></script>
+                          <script type="text/javascript" src="__PUBLIC__/umeditor/lang/zh-cn/zh-cn.js"></script>
+                          <!-- 实例化编辑器 -->
+                          <script type="text/javascript">
+                              var um = UM.getEditor('myEditor');
+                          </script>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2"></label>
+                        <div class="col-md-7">
+                          <button class="btn btn-primary" type="submit">提交</button>
+                          <a class="btn btn-default-outline" onclick="javascript: window.history.go(-1);">取消</a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{include file="footer"}

@@ -1,0 +1,81 @@
+{include file="header"}
+
+	<div class="container-fluid main-content">
+	  <div class="page-title">
+      <h1>
+        大师列表
+      </h1>
+	  </div>
+	  <!-- DataTables Example -->
+	  <div class="row">
+      <div class="col-lg-12">
+        <div class="widget-container fluid-height clearfix">
+          <div class="heading">
+            <i class="icon-table"></i>列表详情
+          </div>
+          <div class="widget-content padded clearfix">
+            <table class="table table-bordered table-striped" id="dataTable1">
+              <thead>
+                <th class="check-header hidden-xs">
+                  <label><input id="checkAll" name="checkAll" type="checkbox"><span></span></label>
+                </th>
+                <th style="width: 120px;">
+                  ID
+                </th>
+                
+                <th style="width: 180px;">
+                  大师姓名
+                </th>
+                <th>
+                  技艺名称
+                </th>
+                <th class="hidden-xs">
+                  大师简介
+                </th>
+                <th style="width: 120px;">
+                  作品数量
+                </th>
+
+                <th>
+                  操作
+                </th>
+              </thead>
+              <tbody>
+                {volist name="masterList" id="vo"}
+                <tr>
+                  <td class="check hidden-xs">
+                    <label><input name="optionsRadios1" type="checkbox" value="option1"><span></span></label>
+                  </td>
+                  <td>
+                    {$vo.master_id}
+                  </td>
+                  
+                  <td >
+                     {$vo.master_name}
+                  </td>
+                  <td class="hidden-xs">
+                    {$vo.master_skill}
+                  </td>
+                  <td class="hidden-xs">
+                    {$vo.master_summary}
+                  </td>
+                  <td class="hidden-xs">
+                    {$vo.master_works}
+                  </td>
+                  <td class="actions">
+                    <div class="action-buttons">
+                      <a title="编辑" class="table-actions" href="{:url('home/masterEdit','mid='.$vo.master_id)}"><i class="icon-edit"></i></a>
+                      <a title="删除" class="table-actions" href="{:url('home/masterDel','mid='.$vo.master_id)}" onclick="if(confirm('确定删除？')) return true; return false;"><i class="icon-trash"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                {/volist}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+	  </div>
+	  <!-- end DataTables Example -->
+	</div>
+{include file="footer"}
