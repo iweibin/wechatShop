@@ -1,0 +1,72 @@
+
+
+	<!-- 回到顶部 -->
+	<div id="goTopBtn" class="back-top"></div>
+
+	<div class="wraper fixwraper noEmpty">
+		
+		<div class="page-title">
+			<h2>
+				<span>收货地址管理</span>
+				<a href="javascript:history.back(-1);" class="arrow-left backpage"></a>
+				<a href="javascript:" class="service link-area"></a>
+			</h2>
+		</div>
+
+		<div class="deliver_address">
+			<div id="list-address">
+				<ul class="list-type list-address">
+
+                    {volist name="address" id="ad"}
+                    {if condition="$ad.add_default == 1" }
+					<li class="active">
+					{else /}
+					<li>
+					{/if}
+					<div class="address-item">
+						<p>
+							<span class="mr20">{$ad.add_name}</span>{$ad.add_telephone}
+						</p>
+						<p class="address">
+							 {$ad.add_detail}
+						</p>
+					</div>
+
+					<div class="set-address">
+						<div class="set-default">
+							<span class="radio setDef"></span><i class="setDef"></i><span class="gray84">设为默认地址</span>
+						</div>
+						<div class="checkbox">
+							<a href="{:url('User/edit_address',['add_id'=>$ad.add_id])}" class="edit">编辑</a>
+							<a href="{:url('User/del_address',['add_id'=>$ad.add_id])}" class="delete">删除</a>
+						</div>
+					</div>
+
+					</li>
+					{/volist}
+
+				</ul>
+			</div>
+
+		</div>	
+				
+		<div class="mask"></div>
+		<div class="pop dailog" id="popDelete">
+			<span class="close">X</span>
+			<div class="pop-bd">
+		      你确定删除该地址吗？
+			</div>
+			<div class="pop-ft">
+				<a class="cancel">取消</a>
+				<a class="confirm">确定</a>
+			</div>
+		</div>
+
+		<div class="address-btn add-address">
+			<a href="{:url('User/add_address')}">新增收货地址</a>
+		</div>
+
+	</div>
+
+
+

@@ -186,10 +186,18 @@ class User extends Base {
             $data['add_telephone'] = $request->post('tel','');
             $data['user_id'] = $user['user_id'];
             $data['add_default'] = '0';
-        
-            Db::table('address')->insert($data);
-            //添加成功 跳转页面
-            $this->redirect('User/address');
+
+            if(trim($data['add_name']) == null) {
+              $this->showNotice("缺少收货人姓名");
+            } else if(trim($data['add_telephone']) == null) {
+              $this->showNotice("缺少收货人电话");
+            } else if(trim($data['add_detail']) == null) {
+              $this->showNotice("缺少收货人地址信息");
+            } else {
+              Db::table('address')->insert($data);
+              //添加成功 跳转页面
+              $this->redirect('User/address');
+            } 
         }
 
         return $this->fetch('index/addAddress');
@@ -211,9 +219,18 @@ class User extends Base {
            $data['add_name'] = $request->post('name', '');
            $data['add_telephone'] =$request->post('tel', '');
 
-           Db::table('address')->where('add_id',$data['add_id'])->update($data);
-         //修改成功 跳回地址信息页面
-		   $this->redirect('User/address');
+
+           if(trim($data['add_name']) == null) {
+              $this->showNotice("缺少收货人姓名");
+            } else if(trim($data['add_telephone']) == null) {
+              $this->showNotice("缺少收货人电话");
+            } else if(trim($data['add_detail']) == null) {
+              $this->showNotice("缺少收货人地址信息");
+            } else {
+                Db::table('address')->where('add_id',$data['add_id'])->update($data);
+               //修改成功 跳回地址信息页面
+               $this->redirect('User/address');
+            } 
            	
         }
         $this->assign('address',$address);
@@ -237,6 +254,24 @@ class User extends Base {
     public function def_add() {
 
     } 
+
+    public function showNotice($str, $smartMode = "javascript:history.back(-1)") {
+    $str = str_replace("\n", "", $str);
+    echo '<DOCTYPE HTML>';
+    echo '<html>';
+    echo '<head>';
+    echo '<meta charset="UTF-8" />';
+    echo '<title>提示信息</title>';
+    echo '</head>';
+    echo '<body>';
+    echo '<script language="javascript">';
+    echo "alert('".addslashes($str)."');";
+    echo 'window.location.href="'.$smartMode.'";';
+    echo '</script>';
+    echo '</body>';
+    echo '</html>';
+    exit;
+    }
 
 
 

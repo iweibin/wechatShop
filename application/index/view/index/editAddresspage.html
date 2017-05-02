@@ -1,0 +1,47 @@
+
+
+	<!-- 回到顶部 -->
+	<div id="goTopBtn" class="back-top"></div>
+
+	<div class="wraper fixwraper noEmpty">
+		
+		<div class="page-title">
+			<h2>
+				<span>收货地址管理</span>
+				<a href="javascript:history.back(-1);" class="arrow-left backpage"></a>
+				<a href="javascript:" class="service link-area"></a>
+			</h2>
+		</div>
+        <form method="post" action="{:url('User/edit_address')}">
+        <input type="hidden" name="add_id" value="{$address.add_id}">
+		<div class="deliver_address">
+			<div class="address-box">
+				<ul>
+					<li class="clearfix">
+						<span>收货人姓名：</span>
+						<input type="text" class="gray84" name="name" value="{$address.add_name}">
+					</li>
+					<li class="clearfix">
+						<span>手机号码：</span>
+						<input type="tel" class="gray84" name="tel" maxlength="11" value="{$address.add_telephone}">
+					</li>
+					<li class="clearfix">
+					    <span>详细地址：</span>
+						<input type="text" class="gray84" name="detail" maxlength="300" value="{$address.add_detail}">
+						<!-- <span style="vertical-align:top;float:left;">详细地址：</span>
+						<div contenteditable="true" id="textarea" class="gray84 address-txt">
+						{$address.add_detail}
+						</div> -->
+					</li>
+				</ul>
+			</div>
+			<i id="testSpanForCheck" style="visibility:hidden;display:inline-block;height:0;"></i>
+			<div class="address-btn save-address">
+				<button type="submit">保存</button>
+			</div>
+		</div>
+		</form>
+	</div>
+
+
+
