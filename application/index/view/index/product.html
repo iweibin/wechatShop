@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=UTF-8> 
+	<title>台创工场</title> 
+	<!-- logo -->
+	<link rel="icon" href="img/logo.png" type="image/x-icon"/>
+
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimum-scale=1,maximum-scale=1,minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name=keywords content="台创工场"/> 
+	<meta name=description content="台创工场"/>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv=Cache-Control content="no-cache, no-store, must-revalidate"/> 
+	<meta http-equiv=Pragma content=no-cache /> 
+	<meta http-equiv=Expires content=0 /> 
+	<meta http-equiv=Expires content="Tue, 01 Jan 1980 1:00:00 GMT"/> 
+	
+	<!-- 样式 -->	
+	<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/common.css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/style.css" />
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+
+</head>
+<body>
+
+	<!-- 回到顶部 -->
+	<div id="goTopBtn" class="back-top"></div>
+
+	<div class="wraper" id="contentMain" style="background: #f5f5f5;">
+		
+		<div class="page-title">
+	   <h2>
+	     <span>商品详情</span>
+	     <a href="javascript:history.back(-1);" class="arrow-left backpage"></a>
+	     <a href="javascript:" class="service link-area"></a>
+	   </h2>
+	 </div>
+
+		<div id="pro-detail-title ">
+			
+			<!-- 商品概括 -->
+			<div class="pro-detail">
+
+				<!-- 轮播图 -->
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ol class="carousel-indicators">
+				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+				  </ol>
+
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner" role="listbox">
+				    <div class="item active">
+				      <img src="img/lbt1.jpeg" alt="">
+				    </div>
+				    <div class="item">
+				      <img src="img/lbt2.jpeg" alt="">
+				    </div>
+				    <div class="item">
+				      <img src="img/lbt3.jpeg" alt="">
+				    </div>
+				    <div class="item">
+				      <img src="img/lbt4.jpeg" alt="">
+				    </div>
+				    <div class="item">
+				      <img src="img/lbt5.jpeg" alt="">
+				    </div>
+				    <div class="item">
+				      <img src="img/lbt6.jpeg" alt="">
+				    </div>
+				  </div>
+
+				  <!-- Controls -->
+				  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				    <span class="sr-only">Previews</span>
+				  </a>
+				  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
+				
+				<!-- 商品简单信息 -->
+				<div class="pro-info">
+					<p class="name">
+						{$product.gdec_s}
+					</p>
+					<p class="mt10">
+						<span class="fr gray84 f12">运费 ¥0</span><span class="price">¥369</span>
+					</p>
+				</div>
+			</div>
+			
+			<!-- 在线客服 -->
+			<div class="module-title nomar">
+				<h3 class="service" data-service="true">
+					<a href="javascript:" class="link-area">在线客服</a>
+					<i class="arrow-right"></i>
+				</h3>
+			</div>			
+
+			<!-- 详细信息 -->
+			<div class="fixed-hd">
+				<p class="flex-item active">图文介绍</p>
+			</div>
+
+			<!-- 图文介绍 -->
+			<div class="tab-item active">			
+				<div class="pro-detail" id="description">
+
+					<!-- 基本信息 -->
+					<p>
+						<strong><span>品牌：</span></strong><span>pangao 攀高(XXXXXXX)</span>
+					</p>
+					<p>
+						<strong><span>品名：</span></strong><span>{$product.gname}</span>
+					</p>
+					<p>
+						<strong><span>型号：</span></strong><span>PG-2601B8(XXXXXXX)</span>
+					</p>
+					<p>
+						<strong><span>材质：</span></strong><span>ABS(XXXXXXX)</span>
+					</p>
+					<p>
+						<strong><span>产品尺寸：</span></strong><span>174mm×145mm×30mm(XXXXXXX)</span>
+					</p>
+					<p>
+						<strong><span>按摩仪净重：</span></strong><span>300g(XXXXXXX)</span>
+					</p>
+					<p>
+						<strong><span>功率：</span></strong><span>≤6W(XXXXXXX)</span>
+					</p>
+					<p>
+						<strong><span>产品内含：</span></strong><span>按摩仪×1，遥控器×1，说明书（含保修卡）×1，适配器×1，产品合格证×1(XXXXXXX)</span>
+					</p>
+
+					<!-- 运输说明 -->
+					<br/>
+					<p>
+						<strong><span>运输说明：</span></strong><br>
+					</p>
+					<p>
+						<span>仅限大陆地区包邮优惠，深圳发货，顺丰快递。(XXXXXXX)</span>
+					</p>
+
+					<!-- 退换货说明 -->
+					<br/>
+					<p>
+						<strong><span>退换货说明：(XXXXXXX)</span></strong>
+					</p>
+					<p>
+						<span>1.本产品支持7天内无理由退货，但产品不得影响二次销售，运费由买家承担。</span>
+					</p>
+					<p>
+						<span>2.商家为本产品提供1年质保服务。</span>
+					</p>
+					<p>
+						<span>3.因质量问题需申请退换货，请收到商品及时拍照，并联系在线客服，我们会尽快为您办理退换货服务。</span>
+					</p>
+					<p>
+						<span>4.订单商品退款，我们会在确认商品情况后，5个工作日内为您办理退款操作，实际到账日以银行及支付规则为准。</span>
+					</p>
+
+					<p>
+						<img src="img/dszp5.jpg"></span></span>
+					</p>
+					<p>
+						这是一款来自panga攀高的颈椎按摩仪。
+					</p>
+					<p>
+						<img src="img/dszp5.jpg"></span></span>
+					</p>
+					<p>
+						<img src="img/dszp5.jpg"></span></span>
+					</p>
+					<p>每天不是埋头看电脑就是低头玩手机，时间一长难免脖子发硬、疼痛难忍，严重时还会头晕恶心。</p>
+					<p>自己按按敲敲吧没什么作用，出去按摩又麻烦，还能怎么办呢？</p>
+					<p>
+						<img src="img/dszp5.jpg"></span></span>
+					</p>
+					<p>这款攀高颈椎按摩仪，让你能随时随地享受专业按摩</p>
+					<p>
+						<img src="img/dszp5.jpg"></span></span>
+					</p>
+					
+					<!-- 使用提示 -->
+					<p>
+						<strong><span>使用提示：(XXXXXXX)</span></strong>
+					</p>
+					<p>
+						<span>1.使用前，请用湿毛巾擦拭颈部，使按摩仪紧贴皮肤，以免导致刺痛感。</span>
+					</p>
+					<p>
+						<span>2.电脉冲先弱后强，能让颈部逐渐适应电脉冲按摩，再逐渐调节为适合自己的强度。</span>
+					</p>
+					<p>
+						<span>3.每个人对电脉冲的敏感度不同，若感觉不适，可选择其他功能进行按摩。</span>
+					</p>
+					<p>
+						<span>4.热灸前可以在颈部涂抹活络油、红花油等辅助产品，治疗效果更佳，但结束后请擦净按摩仪。</span>
+					</p>
+
+					<!-- 使用禁忌 -->
+					<p>
+						<strong><span>使用禁忌：(XXXXXXX)</span></strong>
+					</p>
+					<p>
+						<span>1.切勿与其他医疗电子仪器同时使用，如心脏起搏器、人工心肺等维持生命用医用电子器械、心电图仪等医用电子器械，否则会导致危险。</span>
+					</p>
+					<p>
+						<span>2.如果患者身上同时使用高频手术设备和治疗仪，在治疗仪按摩片位置可能引起烧伤，也可能损坏治疗仪；如果在短波或微波治疗设备附近（1米）使用治疗仪时，本治疗仪的输出可能不稳定。</span>
+					</p>
+					<p>
+						<span>3.靠近胸部使用电极会增加心脏纤颤的危险。</span>
+					</p>
+					<p>
+						<span>4.孕妇及妇女月经期、皮肤敏感者、心脏病、血压异常、恶性肿瘤、脑血管患者、急性病患者或其他正在接受医生治疗者等须先咨询医生后方可使用本产品。</span>
+					</p>
+					<p>
+						<span>5.请勿给儿童或无表达意式能力的人使用。</span>
+					</p>
+
+					<!-- 保养建议 -->
+					<p>
+						<strong><span>保养建议：(XXXXXXX)</span></strong>
+					</p>
+					<p>
+						<span>请放在干燥、通风的地方保管。</span>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="fixed-ft" style="bottom: 0">
+			<div class="operation flex">
+				<a class="flex-item home" style="display:none" href="index.html"><i class="icon-pre"></i>首页</a>
+				<a class="flex-item shopping-bag islogin" id="shoppingBag" href="shopping.html"><i class="icon-car"></i>购物车</a>
+				<a class="flex-item btn pre-addcar" id="buyIt">选择商品</a>
+			</div>
+		</div>
+
+		<!-- 加入购物车遮罩 -->
+		<div id="pop_product_detail">
+			<div class="mask"></div>
+			<div class="pop-footer pop-choose dailog" id="pop-choose" data-is-bind-scroll="true">
+				<div class="pop-hd">
+					<span class="close" id="closeId" style="filter:alpha(opacity=100); -moz-opacity:1;opacity:1;"></span>
+					<div class="img">
+						<img id="addyitcarImage" src="img/huopin.jpg" alt="">
+					</div>
+					<div class="img-right">
+						<p class="price">
+							¥<span id="addyitcarPrice">46</span>
+						</p>
+						<p class="choosed">请选择 销售方式</p>
+					</div>
+					<div class="warn">
+						<p style="line-height: 1.5em;">
+							<span style="font-size: 15px;"><strong><span style="color: rgb(192, 0, 0);">一条特惠：现购买享特价46元（原价66元）。</span></strong></span>
+						</p>
+					</div>
+				</div>
+				<div class="pop-bd" style="max-height: 556px;">
+					<div class="type-choose">
+						<div class="type-bar">
+							<span class="type-t">规格</span>
+							<div class="type-m">
+								<span class="type-item active" data-i="1">1包装</span>
+							</div>
+						</div>
+						<div class="type-bar">
+							<span class="type-t">销售方式</span>
+							<div class="type-m">
+								<span class="type-item active" data-info="现货/3个工作日发货"  data-i="2">现货/3个工作日发货</span>
+							</div>
+						</div>
+						<div class="type-bar">
+							<span class="type-t">销售方式</span>
+							<div class="type-m">
+								<span class="type-item active" data-info="现货/3个工作日发货"  data-i="2">现货/3个工作日发货</span>
+							</div>
+						</div>						
+						<div class="type-bar buy-num noChoose">
+							<div class="fr amount">
+									<span class="decrease">-</span>
+									<input type="tel" class="num numCount" readonly="" value="1">
+									<span class="increase">+</span>
+							</div>
+							<span class="type-t">购买数量</span>
+						</div>
+					</div>
+				</div>
+				<div class="pop-ft">
+					<a class="bottoms add-car">加入购物袋</a><a class="bottoms buy">立即购买</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="mask-opacity"></div>
+		<div class="pop pop-noMask dailog">
+			<span class="close">X</span>
+			<div style="padding: 10px">
+				<div>已加入购物袋</div>
+			</div>
+		</div>
+
+		<div class="mask-opacity"></div>
+		<div class="pop pop-noMask dailog">
+			<span class="close">X</span>
+			<div style="padding: 10px">
+				<div>请选择商品属性</div>
+			</div>
+		</div>
+	</div>	
+
+	<script type="text/javascript" src="js/scrollTo.js"></script>
+	<script type="text/javascript" src="js/listShow.js"></script>
+</body>
+</html>
+
+
