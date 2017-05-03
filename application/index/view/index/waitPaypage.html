@@ -1,0 +1,94 @@
+
+	<!-- 回到顶部 -->
+	<div id="goTopBtn" class="back-top"></div>
+
+	<div class="wraper fixwraper noEmpty">
+		
+		<div class="page-title">
+		   <h2>
+		     <span>全部订单</span>
+		     <a href="javascript:history.back(-1);" class="arrow-left backpage"></a>
+		     <a href="javascript:" class="service link-area"></a>
+		   </h2>
+		 </div>
+
+		 {empty name="order"} 
+		<!-- 订单列表为空 -->
+		<div class="empty-car" id="cartEmpty">
+	    <i class="icon"></i>
+	    <p class="gray84 mt10">您还没有买过东西哦~</p>
+	    </div>
+    {else /}
+  	<!-- 订单列表非空 -->
+		<div class="order-list">
+
+			<ul id="list">
+			    {volist name="order" id="or"}
+				<li>
+					<div class="order-head">
+						<p>
+							<span>订单号:{$or.order_time}</span>
+							<b>待付款</b>
+						</p>
+					</div>
+					<div class="order-address">
+						<p class="consigner">
+							<span>收货人:{$or.add_name}</span>{$or.add_telephone}
+						</p>
+						<p>
+							收货地址:{$or.add_detail}
+						</p>
+					</div>
+					<div class="order-item">
+						<a class="pro-item" href="product.html">
+						<div class="item-img">
+							<img src="__PUBLIC__/img/{$or.gimg.gimg_url}">
+						</div>
+						<div class="item-info">
+							<p class="name">
+								{$or.gname}
+							</p>
+							<div>
+							</div>
+							<p class="price pro-price-qty">
+								¥{$or.gpri}<span class="gray84 ml10 f12 fr">单件运费(没有这个) ¥0</span>
+							</p>
+							<p class="num">
+								<span class="cunt">x{$or.bnum}</span><span class="opt">          预定/5个工作日发货(好像也没有这个) 1包装</span>
+							</p>
+						</div>
+						</a>
+					</div>
+					<div class="order-total">
+						<p>
+							共 {$or.bnum} 件，合计：¥{$or.bnum * $or.gpri} <span class="gray84 f12">(含运费¥0 没有这个)</span>
+						</p>
+					</div>
+					<div class="order-btn">
+						<p>
+							<!-- <a class="btn-pay" href="cashier.html"> -->
+								{switch name="or.order_status"}
+								   {case value="0"}<a class="btn-pay" href="cashier.html"> 去支付 </a>   {/case}
+								   {case value="1"}<a class="btn-pay" href="cashier.html"> 联系客服 </a> {/case}
+								   {case value="2"}<a class="btn-pay" href="cashier.html"> 确认收货 </a>  
+								                   <a class="btn-pay" href="cashier.html"> 查看物流 </a> {/case}
+								   {case value="3"}<a class="btn-pay" href="cashier.html"> 退换货 </a>  
+								                   <a class="btn-pay" href="cashier.html"> 联系客服 </a> {/case}
+								   {case value="4"}<a class="btn-pay" href="cashier.html"> 取消订单 </a> 
+								                   <a class="btn-pay" href="cashier.html"> 联系客服 </a> {/case}
+								   {case value="5"}<a class="btn-pay" href="cashier.html"> 已取消</a> {/case}
+								{/switch}
+						</p>
+					</div>
+				</li>
+				{/volist}
+			</ul>
+		</div>
+		{/empty}
+	</div>
+
+	</div>
+
+	
+
+
